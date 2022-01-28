@@ -6,16 +6,11 @@
 //
 
 import Foundation
+import RxRelay
 
 class ViewModel {
-    var onUpdated: () -> Void = {}
     
-    // 화면에서 보여줘야 될 값
-    var dateTimeString: String = "Loading..." {
-        didSet {
-            onUpdated()
-        }
-    }
+    let dateTimeString = BehaviorRelay(value: "Loading...")
     
     // 아래 내용은 화면에서 보여줘야 할 형태로 가공
     let service = Service()
@@ -31,12 +26,12 @@ class ViewModel {
         service.fetchNow { [weak self] model in
             guard let self = self else { return }
             let dateString = self.dateToString(date: model.currentDateTime)
-            self.dateTimeString = dateString
+            self.dateTimeString.accept(dateString)
         }
     }
     
     func moveDay(day: Int) {
         service.moveDay(day: day)
-        dateTimeString = dateToString(date: service.currentModel.currentDateTime)
+        dateTimeString.accept(dateToString(date: service.currentModel.currentDateTime))
     }
 }

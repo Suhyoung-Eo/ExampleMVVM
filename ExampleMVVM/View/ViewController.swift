@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 class ViewController: UIViewController {
 
@@ -25,15 +26,17 @@ class ViewController: UIViewController {
     }
     
     let viewModel = ViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        viewModel.onUpdated = { [weak self] in
-            DispatchQueue.main.async {
-                self?.dateTimeLabel.text = self?.viewModel.dateTimeString
-            }
-        }
+
+        viewModel.dateTimeString
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { dateTime in
+                self.dateTimeLabel.text = dateTime
+            })
+            .disposed(by: disposeBag)
         
         viewModel.reload()
     }
