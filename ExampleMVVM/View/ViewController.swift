@@ -7,6 +7,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 class ViewController: UIViewController {
 
@@ -32,10 +33,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         viewModel.dateTimeString
-            .observe(on: MainScheduler.instance)
-            .subscribe(onNext: { dateTime in
-                self.dateTimeLabel.text = dateTime
-            })
+            .bind(to: dateTimeLabel.rx.text)
             .disposed(by: disposeBag)
         
         viewModel.reload()
