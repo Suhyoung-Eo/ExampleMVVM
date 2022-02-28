@@ -30,7 +30,7 @@ RxSwift를 사용하여 MVVM 디자인 패턴을 적용한 간단한 프로젝�
 ### MVVM 장단점
  - 장점
  > 1. View(UI)와 ViewModel 독립적이므로 효율적인 유닛테스트 가능 - TDD 개발 환경
- > 2. 하나의 ViewModel로 여러개의 View를 담당 할 수 있음.
+ > 2. 하나의 ViewModel로 여러개의 View를 담당 할 수 있음
  > 3. Service(Domain) 변경없이 View(UI)의 변경이 용이함   
  
  - 단점
