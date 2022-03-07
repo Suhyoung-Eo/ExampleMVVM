@@ -1,7 +1,7 @@
 # RxSwift_MVVM
 
 ## 프로젝트 설명
-RxSwift를 사용하여 MVVM 디자인 패턴을 적용한 간단한 프로젝트
+RxSwift를 사용하여 MVVM 패턴을 적용한 간단한 프로젝트
 
 ### 파일 구성
 - ViewController
